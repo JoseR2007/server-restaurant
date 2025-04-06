@@ -1,0 +1,23 @@
+{
+  "name": "server-restaurant",
+  "version": "1.0.0",
+  "description": "A server for a restaurante",
+  "keywords": [
+    "node",
+    "express",
+    "restaurant"
+  ],
+  "license": "ISC",
+  "author": "JoseR2007",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "devDependencies": {
+    "semistandard": "^17.0.0"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}
