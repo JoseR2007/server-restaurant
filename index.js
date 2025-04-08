@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(limiter.rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
-  legacyHeaders: false
+  legacyHeades: false,
+  message: {
+    status: 429,
+    message: 'Too many requst, plase try again later'
+  }
 }));
 app.use((req, res, next) => {
   const key = req.headers['x-api-key'];
