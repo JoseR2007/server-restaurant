@@ -1,27 +1,32 @@
 const express = require('express');
 const orders = require('../orders');
-const handle_orders = express.Router();
+const handleOrders = express.Router();
 
-handle_orders.post('/:table', (req, res) => {
+handleOrders.get('/', (req, res) => {
+  res.send(orders);
+});
+
+handleOrders.post('/:table/orders', (req, res) => {
   try {
-    const table_number = req.params.table;
-    const body = JSON.parse(req.body);
+    const tableNumber = parseInt(req.params.table);
     const order = {
-      table: table_number,
-      order: body,
+      table: tableNumber,
+      order: req.body.content,
       completed: false
-    }
+    };
     orders.push(order);
   } catch (err) {
     console.log(err);
     res.status(500).send({
       status: req.statusCode,
       message: 'Internal server error'
-    })
+    });
   }
 
   res.send({
     status: req.statusCode,
     message: 'Successful request'
-  })
+  });
 });
+
+module.exports = handleOrders;
