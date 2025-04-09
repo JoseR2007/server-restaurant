@@ -18,13 +18,13 @@ handleOrders.post('/:table/orders', (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send({
-      status: req.statusCode,
+      status: res.statusCode,
       message: 'Internal server error'
     });
   }
 
   res.send({
-    status: req.statusCode,
+    status: res.statusCode,
     message: 'Successful request'
   });
 });

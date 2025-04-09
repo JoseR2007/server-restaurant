@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   const key = req.headers['x-api-key'];
   if (key !== API_KEY) {
     res.status(401).send({
-      status: 401,
+      status: res.statusCode,
       message: 'Incorrect API key'
     });
   }
@@ -29,6 +29,13 @@ app.use((req, res, next) => {
 });
 
 app.use(handleOrders);
+
+app.use((req, res) => {
+  res.status(404).send({
+    status: res.statusCode,
+    message: 'Resource not found'
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor listo en: ${PORT}`);
